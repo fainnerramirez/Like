@@ -13,6 +13,7 @@ import {
   Stack,
   useColorMode,
   Center,
+  Link,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
@@ -24,8 +25,9 @@ const Navbar = () => {
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Box>Logo</Box>
-
+          <Box>Pokedex</Box>
+          <Link>Home</Link>
+          <Link>Likes</Link>
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
               <Button onClick={toggleColorMode}>
@@ -46,8 +48,6 @@ const Navbar = () => {
                   />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
-                  <MenuItem>Home</MenuItem>
-                  <MenuItem>Likes</MenuItem>
                   <br />
                   <Center>
                     <Avatar
