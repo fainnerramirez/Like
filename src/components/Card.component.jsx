@@ -3,23 +3,29 @@ import { Row, Col, Card } from "react-bootstrap";
 import { contextCharacter } from "../context/Context";
 
 const CardComponent = () => {
-  const context = useContext(contextCharacter);
+  const { characterState } = useContext(contextCharacter);
 
-  console.log(context);
+  console.log(characterState);
 
   return (
     <Row xs={1} md={2} className="g-4">
-      {Array.from({ length: 4 }).map((_, idx) => (
-        <Col key={idx}>
+      {characterState.length > 0 ? (
+        <h1>Numero de personajes {characterState.length}</h1>
+      ) : (
+        <h1>0</h1>
+      )}
+      {characterState.map((character) => (
+        <Col>
           <Card>
-            <Card.Img variant="top" src="holder.js/100px160" />
+            <Card.Img
+              variant="top"
+              src={character.image}
+              alt={character.name}
+            />
             <Card.Body>
-              <Card.Title>Card title</Card.Title>
-              <Card.Text>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </Card.Text>
+              <Card.Title>{character.name}</Card.Title>
+              <Card.Text>Specie: {character.species}</Card.Text>
+              <Card.Text>Gender: {character.gender}</Card.Text>
             </Card.Body>
           </Card>
         </Col>
