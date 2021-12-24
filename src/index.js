@@ -1,15 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { theme } from "./config/chakraui.config";
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import "./index.css";
+//Config
+import "bootstrap/dist/css/bootstrap.min.css";
+import "@fontsource/nunito";
+//router
+import { CharacterProvider } from "./context/Context";
 
 ReactDOM.render(
-  <ChakraProvider resetCSS theme={theme}>
-    <ColorModeScript />
+  <CharacterProvider>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </ChakraProvider>,
+  </CharacterProvider>,
   document.getElementById("root")
 );
