@@ -11,6 +11,7 @@ const initialState = {
 
 export const CharacterProvider = ({ children }) => {
   const [characterState, setCharacterState] = useState([]);
+  const [characters, dispatch] = useReducer(reducerCharacter, characterState);
 
   useEffect(() => {
     async function getData() {
@@ -27,8 +28,6 @@ export const CharacterProvider = ({ children }) => {
 
     getData();
   }, []);
-
-  const [characters, dispatch] = useReducer(reducerCharacter, characterState);
 
   const handleLikeCharacter = (payload) => {
     dispatch({ type: "LIKE", payload });
