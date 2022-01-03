@@ -4,6 +4,7 @@ import { contextCharacter } from "../context/Context";
 //icons
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
+import ModalDetails from "../sections/ModalDetails.component";
 
 const CardComponent = () => {
   const { characterState, characters } = useContext(contextCharacter);
@@ -23,16 +24,17 @@ const CardComponent = () => {
         {characterState.map((character) => (
           <Col key={character.id}>
             <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                src={character.image}
-                alt={character.name}
-              />
+              <div className="p-2">
+                <Card.Img
+                  variant="top"
+                  src={character.image}
+                  alt={character.name}
+                />
+              </div>
               <Card.Body>
                 <Card.Title className="text-center">
                   {character.name}
                 </Card.Title>
-                <Card.Text>Specie: {character.species}</Card.Text>
               </Card.Body>
               <Card.Footer>
                 <span className="d-flex justify-content-center">
@@ -41,10 +43,10 @@ const CardComponent = () => {
                       <span className="m-1">
                         <AiOutlineLike />
                       </span>
-                      <span className="m-1">Like</span>
+                      <span className="">Like</span>
                     </span>
                   </Button>
-                  <Button variant="primary m-2">Details</Button>
+                  <ModalDetails />
                 </span>
               </Card.Footer>
             </Card>
