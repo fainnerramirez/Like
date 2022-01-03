@@ -2,16 +2,15 @@ import { createContext, useEffect, useReducer, useState } from "react";
 import { reducerCharacter } from "../reducer/Reducer";
 import axios from "axios";
 
-export const contextCharacter = createContext();
-
 const initialState = {
   cartLikes: [],
   likeCount: 0,
 };
 
+export const contextCharacter = createContext(initialState);
+
 export const CharacterProvider = ({ children }) => {
   const [characterState, setCharacterState] = useState([]);
-  const [characters, dispatch] = useReducer(reducerCharacter, characterState);
 
   useEffect(() => {
     async function getData() {
@@ -29,13 +28,28 @@ export const CharacterProvider = ({ children }) => {
     getData();
   }, []);
 
+  const init = () => {
+    return characterState || [];
+  };
+
+  const [characters, dispatch] = useReducer(reducerCharacter, [], init);
+
   const handleLikeCharacter = (payload) => {
     dispatch({ type: "LIKE", payload });
   };
 
+  const handleDetailsCharacter = (payload) => {
+    dispatch({ type: "DETAILS", payload });
+  };
+
   return (
     <contextCharacter.Provider
-      value={{ characterState, handleLikeCharacter, ...characters }}
+      value={{
+        characterState,
+        handleLikeCharacter,
+        handleDetailsCharacter,
+        characters,
+      }}
     >
       {children}
     </contextCharacter.Provider>
